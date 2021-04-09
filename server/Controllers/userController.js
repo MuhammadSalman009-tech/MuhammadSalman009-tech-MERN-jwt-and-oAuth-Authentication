@@ -93,20 +93,20 @@ const userController={
             res.status(500).json({msg:error.message});
         }
     },
-//     resetPassword:async(req,res)=>{
-//         try {
-//             const {password}=req.body;
-//             const passwordHash=await bcrypt.hash(password,12);
-//             const updatedUser=await User.findOneAndUpdate({_id:req.user.id},{
-//                 password:passwordHash
-//             })
-//             if(updatedUser){
-//                 return res.json({msg:"Password changed successfully"});
-//             }
-//         } catch (error) {
-//             res.status(500).json({msg:error.message});
-//         }
-//     }
+    resetPassword:async(req,res)=>{
+        try {
+            const {password}=req.body;
+            const passwordHash=await bcrypt.hash(password,12);
+            const updatedUser=await User.findOneAndUpdate({_id:req.user.id},{
+                password:passwordHash
+            })
+            if(updatedUser){
+                return res.json({msg:"Password changed successfully"});
+            }
+        } catch (error) {
+            res.status(500).json({msg:error.message});
+        }
+    }
 }
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

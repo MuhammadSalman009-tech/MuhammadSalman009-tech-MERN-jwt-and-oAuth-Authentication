@@ -7,6 +7,6 @@ router.post("/activation",userController.emailActivation);
 router.post("/login",userController.login);
 router.get("/refresh_token",userController.getAccessToken);
 router.post("/forgot",userController.forgotPassword);
-// router.post("/reset",authUserMiddleware,userController.resetPassword);
+router.post("/reset",authUserMiddleware,userController.resetPassword);
 
 module.exports=router
