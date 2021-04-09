@@ -48,25 +48,25 @@ const userController={
             res.status(500).json({msg:error.message});
         }
     },
-//     login:async(req,res)=>{
-//         try {
-//             const {email,password}=req.body;
-//             const user=await User.findOne({email});
-//             if(!user) return res.status(400).json({msg:"This email does not exists"});
-//             const isMatching=await bcrypt.compare(password,user.password);
-//             if(!isMatching) return res.status(400).json({msg:"Password is incorrect"});
-//             const refresh_token=createRefreshToken({id:user._id});
-//             res.cookie('refreshToken',refresh_token,{
-//                 httpOnly:true,
-//                 path:"/user/refresh_token",
-//                 maxAge:1000*60*60*24*7 //7 days
-//             })
+    login:async(req,res)=>{
+        try {
+            const {email,password}=req.body;
+            const user=await User.findOne({email});
+            if(!user) return res.status(400).json({msg:"This email does not exists"});
+            const isMatching=await bcrypt.compare(password,user.password);
+            if(!isMatching) return res.status(400).json({msg:"Password is incorrect"});
+            const refresh_token=createRefreshToken({id:user._id});
+            res.cookie('refreshToken',refresh_token,{
+                httpOnly:true,
+                path:"/user/refresh_token",
+                maxAge:1000*60*60*24*7 //7 days
+            })
 
-//             res.json({msg:"login success"});
-//         } catch (error) {
-//             res.status(500).json({msg:error.message});
-//         }
-//     },
+            res.json({msg:"login success"});
+        } catch (error) {
+            res.status(500).json({msg:error.message});
+        }
+    },
 //     getAccessToken:async(req,res)=>{
 //         try {
 //             const rf_token=req.cookies.refreshToken;
