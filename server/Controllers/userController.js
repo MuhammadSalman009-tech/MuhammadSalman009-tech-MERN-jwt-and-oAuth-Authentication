@@ -6,35 +6,35 @@ const sendEmail=require("./sendMail");
 
 const {CLIENT_URL}=process.env;
 const userController={
-//     register:async(req,res)=>{
-//         try {
-//             const {firstName, lastName, email, password}=req.body;
-//             //checking if the user inputs are empty
-//             if(!firstName||!lastName||!email||!password)
-//                 return res.status(400).json({msg:"Please fill in all fields"});
-//             //checking if the user entered correct email    
-//             if(!validateEmail(email))
-//                 return res.status(400).json({msg:"Invalid Email Address"});
-//             //checking if the user already exists in our db
-//             const user=await User.findOne({email});
-//             if(user) return res.status(400).json({msg:"Email already exists"}); 
-//             //checking password length      
-//             if(password.length<6)
-//                 return res.status(400).json({msg:"password must be at least 6 characters"});
-//             const passwordHash=await bcrypt.hash(password,12);
-//             const newUser={
-//                 firstName,lastName,email,password:passwordHash
-//             }
-//             const activation_token=createActivationToken(newUser);
-//             const url=`${CLIENT_URL}/user/activate/${activation_token}`;
-//             //Sending activation email to user
-//             sendEmail(newUser.email,url,"Click the link below to activate your account");
-//             res.json({msg:"Please check your inbox to activate your account"});
+    register:async(req,res)=>{
+        try {
+            const {firstName, lastName, email, password}=req.body;
+            //checking if the user inputs are empty
+            if(!firstName||!lastName||!email||!password)
+                return res.status(400).json({msg:"Please fill in all fields"});
+            //checking if the user entered correct email    
+            if(!validateEmail(email))
+                return res.status(400).json({msg:"Invalid Email Address"});
+            //checking if the user already exists in our db
+            const user=await User.findOne({email});
+            if(user) return res.status(400).json({msg:"Email already exists"}); 
+            //checking password length      
+            if(password.length<6)
+                return res.status(400).json({msg:"password must be at least 6 characters"});
+            const passwordHash=await bcrypt.hash(password,12);
+            const newUser={
+                firstName,lastName,email,password:passwordHash
+            }
+            const activation_token=createActivationToken(newUser);
+            const url=`${CLIENT_URL}/user/activate/${activation_token}`;
+            //Sending activation email to user
+            sendEmail(newUser.email,url,"Click the link below to activate your account");
+            res.json({msg:"Please check your inbox to activate your account"});
 
-//         } catch (error) {
-//             res.status(500).json({msg:error.message});
-//         }
-//     },
+        } catch (error) {
+            res.status(500).json({msg:error.message});
+        }
+    },
 //     emailActivation:async(req,res)=>{
 //         try {
 //             const {activation_token}=req.body;
