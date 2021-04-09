@@ -35,19 +35,19 @@ const userController={
             res.status(500).json({msg:error.message});
         }
     },
-//     emailActivation:async(req,res)=>{
-//         try {
-//             const {activation_token}=req.body;
-//             const user=jwt.verify(activation_token,process.env.ACTIVATION_TOKEN_SECRET);
-//             const {firstName,lastName,email,password}=user;
-//             const savedUser=await User.create({firstName,lastName,email,password});
-//             console.log(savedUser);
+    emailActivation:async(req,res)=>{
+        try {
+            const {activation_token}=req.body;
+            const user=jwt.verify(activation_token,process.env.ACTIVATION_TOKEN_SECRET);
+            const {firstName,lastName,email,password}=user;
+            const savedUser=await User.create({firstName,lastName,email,password});
+            console.log(savedUser);
 
-//             res.json({msg:"Account has been activated"});
-//         } catch (error) {
-//             res.status(500).json({msg:error.message});
-//         }
-//     },
+            res.json({msg:"Account has been activated"});
+        } catch (error) {
+            res.status(500).json({msg:error.message});
+        }
+    },
 //     login:async(req,res)=>{
 //         try {
 //             const {email,password}=req.body;
