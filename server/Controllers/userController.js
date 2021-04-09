@@ -80,19 +80,19 @@ const userController={
             res.status(500).json({msg:error.message});
         }
     },
-//     forgotPassword:async(req,res)=>{
-//         try {
-//             const {email}=req.body;
-//             const user=await User.findOne({email});
-//             if(!user) return res.status(400).json({msg:"This email does not exist"});
-//             const access_token=createAccessToken({id:user._id});
-//             const url=`${CLIENT_URL}/user/reset/${access_token}`;
-//             sendEmail(email,url,"Click the link below to reset password");
-//             res.json({msg:"Re-Send password, please check your email"});
-//         } catch (error) {
-//             res.status(500).json({msg:error.message});
-//         }
-//     },
+    forgotPassword:async(req,res)=>{
+        try {
+            const {email}=req.body;
+            const user=await User.findOne({email});
+            if(!user) return res.status(400).json({msg:"This email does not exist"});
+            const access_token=createAccessToken({id:user._id});
+            const url=`${CLIENT_URL}/user/reset/${access_token}`;
+            sendEmail(email,url,"Click the link below to reset password");
+            res.json({msg:"Re-Send password, please check your email"});
+        } catch (error) {
+            res.status(500).json({msg:error.message});
+        }
+    },
 //     resetPassword:async(req,res)=>{
 //         try {
 //             const {password}=req.body;
